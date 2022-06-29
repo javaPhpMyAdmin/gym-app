@@ -1,1 +1,5 @@
 export * from './NavBar'
+export * from './SearchExercises'
+export * from './HeroBanner'
+export * from './Footer'
+export * from './Exercises'

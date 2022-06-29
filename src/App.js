@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { Navbar } from './components';
 import { ExerciseDetail, Home } from './pages';
-
+import './App.css'
 const App = () => {
   return (
     <Box width="401px" sx={{ width: { xl: '1488px' } }} m="auto">
