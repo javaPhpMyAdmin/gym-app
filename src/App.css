@@ -91,6 +91,9 @@ body {
 .bodyPart-card:hover {
   transform: scale(1.1, 1.1);
 }
+/* .search-btn { */
+  /* right: 20px; */
+  /* top:710px; */
 
 .search-btn:hover {
   color: #FF2625 !important;
