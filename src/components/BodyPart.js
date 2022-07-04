@@ -28,12 +28,7 @@ export const BodyPart = ({ item, bodyPart, setBodyPart }) => {
         alt="dumbbell"
         style={{ width: "40px", height: "40px" }}
       />
-      <Typography
-        fontFamily="Alegreya"
-        fontSize="24px"
-        fontWeight="bold"
-        color="#3A1212"
-      >
+      <Typography fontSize="24px" fontWeight="bold" color="#3A1212">
         {item}
       </Typography>
     </Stack>
