@@ -91,9 +91,6 @@ body {
 .bodyPart-card:hover {
   transform: scale(1.1, 1.1);
 }
-/* .search-btn { */
-  /* right: 20px; */
-  /* top:710px; */
 
 .search-btn:hover {
   color: #FF2625 !important;
@@ -116,13 +113,14 @@ body {
   }
 
 
-  .react-horizontal-scrolling-menu--scroll-container {
-    width: 500px;
+  .react-horizontal-scrolling-menu-scroll-container {
+    width: 700px;
   }
 
   .left-arrow,
   .right-arrow {
-    position: static !important;
+    /* position: static !important; */
+    position: absolute;
   }
 
   .hero-banner-img {
@@ -142,7 +140,14 @@ body {
 
 @media screen and (max-width:400px) {
   .exercise-card {
-    width: 280px;
+    width: 270px;
+    left: 40px
+  }
+  .right-arrow
+  .left-arrow{
+    bottom: 190px;
+    color: black;
+    position: absolute
   }
 }
 

@@ -20,20 +20,22 @@ export const SearchExercises = ({ bodyPart, setBodyPart, setExercises }) => {
 
   const handleSearch = async () => {
     if (search) {
-      const exerciseData = await fetchData(url, options);
-      const searchExercises = exerciseData.filter(
+      const exercisesData = await fetchData(url, options);
+      const searchedExercises = exercisesData.filter(
         (exercise) =>
           exercise.name.toLowerCase().includes(search) ||
           exercise.target.toLowerCase().includes(search) ||
           exercise.equipment.toLowerCase().includes(search) ||
           exercise.bodyPart.toLowerCase().includes(search)
       );
+
+      window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
       setSearch("");
-      setExercises(searchExercises);
+      setExercises(searchedExercises);
     }
   };
   return (
-    <Stack alignItems="center" mt="40px" justifyContent="center" p="20px">
+    <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
       <Typography
         fontWeight={700}
         sx={{ fontSize: { lg: "44px", xs: "30px" } }}
@@ -50,11 +52,11 @@ export const SearchExercises = ({ bodyPart, setBodyPart, setExercises }) => {
               border: "none",
               borderRadius: "4px",
             },
-            width: { lg: "800px", xs: "350px" },
+            width: { lg: "1170px", xs: "350px" },
             backgroundColor: "#fff",
-            borderRadius: "70px",
+            borderRadius: "40px",
           }}
-          height="80px"
+          height="76px"
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
           placeholder="Search Exercises"
@@ -69,7 +71,7 @@ export const SearchExercises = ({ bodyPart, setBodyPart, setExercises }) => {
             width: { lg: "175px", xs: "80px" },
             fontSize: { lg: "20px", xs: "14px" },
             height: "55px",
-            position: "relative",
+            position: "absolute",
             right: "0px",
           }}
           onClick={handleSearch}
@@ -77,7 +79,7 @@ export const SearchExercises = ({ bodyPart, setBodyPart, setExercises }) => {
           Search
         </Button>
       </Box>
-      <Box>
+      <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
         <HorizontalScrollBar
           data={bodyParts}
           bodyPart={bodyPart}
