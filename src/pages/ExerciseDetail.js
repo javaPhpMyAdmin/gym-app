@@ -6,37 +6,57 @@ import { Detail, ExerciseVideo, SimilarExercises } from "../components";
 
 export const ExerciseDetail = () => {
   const [exerciseDetail, setExerciseDetail] = useState({});
-  const [exerciseVideos, setExercisesVideos] = useState([]);
+  const [exerciseVideos, setExerciseVideos] = useState([]);
+  const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
+  const [equipmentMuscleExercises, setEquipmentMuscleExercises] = useState([]);
   const { id } = useParams();
-  console.log("ME LLEGO ID", id);
 
   useEffect(() => {
     const fetchExercisesData = async () => {
       const exerciseDbUrl =
         "https://exercisedb.p.rapidapi.com/exercises/exercise";
       const youtubeSearchUrl =
-        "https://youtube-search-and-download.p.rapidapi.com/video/related";
+        "https://youtube-search-and-download.p.rapidapi.com";
 
       const exerciseDetailData = await fetchData(
         `${exerciseDbUrl}/${id}`,
         options
       );
-      // console.log(exerciseDetailData)
       setExerciseDetail(exerciseDetailData);
 
       const exerciseVideosData = await fetchData(
-        `${youtubeSearchUrl}`,
+        `${youtubeSearchUrl}/search?query=${exerciseDetailData.name}`,
         optionsYouTubeSearch
       );
-      setExercisesVideos(exerciseVideosData);
+      console.log(exerciseVideosData);
+      setExerciseVideos(exerciseVideosData.contents[0]);
+
+      const targetMuscleExercisesData = await fetchData(
+        `${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`,
+        options
+      );
+      setTargetMuscleExercises(targetMuscleExercisesData);
+
+      const equipmentMuscleExercisesData = await fetchData(
+        `${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`,
+        options
+      );
+      setEquipmentMuscleExercises(equipmentMuscleExercisesData);
     };
+
     fetchExercisesData();
   }, [id]);
   return (
     <Box>
       <Detail exerciseDetail={exerciseDetail} />
-      <ExerciseVideo exercisesVideos={exerciseVideos} name={exerciseDetail.name}/>
-      <SimilarExercises />
+      <ExerciseVideo
+        exercisesVideos={exerciseVideos}
+        name={exerciseDetail.name}
+      />
+      <SimilarExercises
+        targetMuscleExercises={targetMuscleExercises}
+        equipmentMuscleExercises={equipmentMuscleExercises}
+      />
     </Box>
   );
 };
