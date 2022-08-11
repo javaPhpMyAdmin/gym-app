@@ -25,26 +25,26 @@ export const ExerciseDetail = () => {
       setExerciseDetail(exerciseDetailData);
 
       const exerciseVideosData = await fetchData(
-        `${youtubeSearchUrl}/search?query=${exerciseDetailData.name}`,
+        `${youtubeSearchUrl}/search?query=${exerciseDetailData?.name}`,
         optionsYouTubeSearch
       );
-      console.log(exerciseVideosData);
-      setExerciseVideos(exerciseVideosData.contents[0]);
+      //console.log('VIDEOS DATA',exerciseVideosData);
+     setExerciseVideos(exerciseVideosData?.contents);
 
       const targetMuscleExercisesData = await fetchData(
-        `${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`,
+        `${exerciseDbUrl}/exercises/target/${exerciseDetailData?.target}`,
         options
       );
       setTargetMuscleExercises(targetMuscleExercisesData);
 
       const equipmentMuscleExercisesData = await fetchData(
-        `${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`,
+        `${exerciseDbUrl}/exercises/equipment/${exerciseDetailData?.equipment}`,
         options
       );
       setEquipmentMuscleExercises(equipmentMuscleExercisesData);
     };
 
-    fetchExercisesData();
+  fetchExercisesData();
   }, [id]);
   return (
     <Box>
