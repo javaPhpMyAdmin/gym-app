@@ -29,12 +29,14 @@ export const ExerciseDetail = () => {
         optionsYouTubeSearch
       );
       //console.log('VIDEOS DATA',exerciseVideosData);
-     setExerciseVideos(exerciseVideosData?.contents);
-
+      setExerciseVideos(exerciseVideosData?.contents);
+      console.log("detail target", exerciseDetailData.target);
       const targetMuscleExercisesData = await fetchData(
-        `${exerciseDbUrl}/exercises/target/${exerciseDetailData?.target}`,
+        `https://exercisedb.p.rapidapi.com/exercises/target/${exerciseDetailData?.target}`,
         options
       );
+
+      console.log("TARGETMUSCLE", targetMuscleExercises);
       setTargetMuscleExercises(targetMuscleExercisesData);
 
       const equipmentMuscleExercisesData = await fetchData(
@@ -44,7 +46,7 @@ export const ExerciseDetail = () => {
       setEquipmentMuscleExercises(equipmentMuscleExercisesData);
     };
 
-  fetchExercisesData();
+    fetchExercisesData();
   }, [id]);
   return (
     <Box>
